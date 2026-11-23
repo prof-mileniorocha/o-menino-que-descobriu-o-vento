@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QR Code do Projeto</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    :root { --ink: #4a2c22; --paper: #efe3c8; --dark: #2a1913; --gold: #f2b24c; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: #d6bc8f; color: var(--ink); font-family: "Alegreya", Georgia, serif; display: flex; flex-direction: column; align-items: center; padding: 24px 16px; gap: 20px; }
+    .card { width: 100%; max-width: 420px; background: var(--paper); border-radius: 22px; padding: 28px 24px; text-align: center; box-shadow: 0 16px 40px rgba(60, 36, 20, .3); }
+    .card img.logo { width: 64px; margin: 0 auto 8px; display: block; }
+    h1 { font-family: "IM Fell English SC", serif; font-weight: 400; font-size: 2rem; line-height: 1; margin: 6px 0 4px; }
+    .sub { margin: 0 0 18px; font-style: italic; }
+    #qr { background: #fff; padding: 16px; border-radius: 14px; display: inline-block; }
+    #qr img, #qr canvas { display: block; width: 240px !important; height: 240px !important; }
+    .scan { font-family: "IM Fell English SC", serif; font-size: 1.3rem; margin: 16px 0 4px; }
+    .class { font-size: .9rem; margin: 0; }
+    .tools { width: 100%; max-width: 420px; display: grid; gap: 10px; }
+    label { font-size: .9rem; font-weight: 500; }
+    input { width: 100%; padding: 12px; border-radius: 12px; border: 1.5px solid rgba(74, 44, 34, .3); font: inherit; background: #fffaf0; }
+    button { padding: 13px; border-radius: 999px; border: 0; background: var(--dark); color: #fbf0dc; font: inherit; font-weight: 500; cursor: pointer; }
+    @media print {
+      body { background: #fff; padding: 0; }
+      .tools { display: none; }
+      .card { box-shadow: none; border: 2px solid var(--ink); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img class="logo" src="assets/logo-escola.png" alt="">
+    <h1>O Menino que Descobriu o Vento</h1>
+    <p class="sub">A história de William Kamkwamba</p>
+    <div id="qr"></div>
+    <p class="scan">Aponte a câmera do celular</p>
+    <p class="class">Curso Técnico em Desenvolvimento de Sistemas · 2º Semestre<br>Colégio Estadual Cleoracy Aparecida Gil</p>
+  </div>
+
+  <div class="tools">
+    <label for="url">Endereço do site (já vem preenchido)</label>
+    <input id="url" type="url">
+    <button onclick="window.print()">Imprimir</button>
+  </div>
+
+  <script>
+    const input = document.getElementById('url');
+    const box = document.getElementById('qr');
+    input.value = new URL('./', location.href).href;
+    let qr;
+    function draw() {
+      box.innerHTML = '';
+      qr = new QRCode(box, { text: input.value.trim(), width: 480, height: 480, colorDark: '#2a1913', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+    }
+    input.addEventListener('input', draw);
+    draw();
+  </script>
+</body>
+</html>
