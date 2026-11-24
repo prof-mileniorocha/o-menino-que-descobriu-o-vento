@@ -19,9 +19,9 @@ Coloque as fotos na pasta `fotos/` com **exatamente** estes nomes (em `.jpg`):
 
 | Arquivo | Onde aparece |
 |---|---|
-| `maquete-construcao.jpg` | foto de destaque (já existe) |
+| `maquete-final.jpg` | foto de destaque da maquete |
 | `etapa-1.jpg` … `etapa-5.jpg` | passo a passo "Fizemos dessa forma" |
-| `final-1.jpg` … `final-4.jpg` | galeria "A maquete finalizada" |
+| `turma.jpg` | "A turma em ação" |
 
 Enquanto uma foto não existir, aparece "Foto em breve".
 Para ver o nome do arquivo em cada espaço, abra o site com `?editar` no fim do endereço, por exemplo `.../index.html?editar`.
